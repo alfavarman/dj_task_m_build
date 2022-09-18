@@ -1,0 +1,14 @@
+{% extends 'maintm/base.html' %}
+{% block title %}
+Create Account
+{% endblock %}
+
+{% block content %}
+<p></p>
+  <form method="POST" class="form-group">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit" class="btn btn-success">Register</button>
+
+  </form>
+{% endblock %}
