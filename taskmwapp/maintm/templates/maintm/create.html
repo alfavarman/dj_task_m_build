@@ -1,12 +1,15 @@
 {% extends 'maintm/base.html' %}
-{% block title %} <h1>Create new list</h1>{% endblock %}
+{% block title %} Create new list{% endblock %}
 
 {% block content %}
-Create Page
+Create List, Task
+<p></p>
 <form method="post" action="/create/">
-    <button type="submit" name="save"></button>
-    {{form}}
+    {% csrf_token %}
+    {{form.as_ul}}
+
+    <button type="submit" name="save">Create New</button>
+
     </form>
     <h1>{{ls}}</h1>
-
 {% endblock %}
