@@ -1,12 +1,22 @@
 {% extends 'maintm/base.html' %}
-{% block title %} <h1>TM View List</h1>{% endblock %}
+{% block title %} TM View List{% endblock %}
 
 {% block content %}
     <h1>{{ls}}</h1>
-    <ul>
-        {% for item in ls.task_set.all %}
-            <li>{{item.task}}</li>
-        {% endfor %}
-    </ul>
+    <form method="post" action="#">
+        {% csrf_token %}
+        <ul>
+            {% for position in ls.task_set.all %}
+                {% if task.completed == True %}
+                    <li><input type="checkbox" value="ticked" name="c{{position.id}}" checked>{{position.task}}</li>
+                {% else %}
+                    <li><input type="checkbox" value="ticked" name="c{{position.id}}">{{position.task}}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <button type="submit" name="save" value="save">Save</button>
+        <input type="text" name="new">
+        <button type="submit" name="newItem" value="newItem">Add Item</button>
+    </form>
     <p> Last Paragrph</p>
 {% endblock %}
