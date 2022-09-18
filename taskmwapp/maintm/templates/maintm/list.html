@@ -1,0 +1,12 @@
+{% extends 'maintm/base.html' %}
+{% block title %} <h1>TM View List</h1>{% endblock %}
+
+{% block content %}
+    <h1>{{ls.task_list_name}}</h1>
+    <ul>
+        {% for item in ls.item_set.all %}
+            <li>{{item.task}}</li>
+        {% endfor %}
+    </ul>
+    <p> TM Home Content</p>
+{% endblock %}

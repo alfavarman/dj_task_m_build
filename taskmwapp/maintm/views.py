@@ -6,7 +6,7 @@ from .models import ToDoList, Task
 
 def index(response, id):
 	ls = ToDoList.objects.get(id=id)
-	return render(response, 'maintm/base.html', {})
+	return render(response, 'maintm/list.html', {})
 
 
 def home(response):
