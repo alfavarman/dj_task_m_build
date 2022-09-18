@@ -7,6 +7,27 @@ from .forms import CreateNewList
 
 def index(response, id):
 	ls = ToDoList.objects.get(id=id)
+
+	# {"save": ["save"], "c1": ["ticked"]}
+	if response.method == "POST":
+		print(response.POST)
+		if response.POST.get("save"):
+			for position in ls.task_set.all():
+				if response.POST.get("c" + str(position.id)) == "ticked":
+					position.completed = True
+				else:
+					position.completed = False
+				position.save()
+
+		elif response.POST.get("newItem"):
+			txt = response.POST.get("new")
+
+			# as we dont use django forms here manual validation is required
+			# TODO implement validator
+			if len(txt) > 3:
+				ls.task_set.create(task=txt, completed=False)
+			else:
+				print("task text must be at last 4 characters long")
 	return render(response, 'maintm/list.html', {"ls": ls})
 
 
