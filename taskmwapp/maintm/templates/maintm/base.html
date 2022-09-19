@@ -42,8 +42,12 @@
         <a href="/about">About</a>
     </div>
     <div id="content" task_list_name="content" class="main">
-        {% block content %} Default content
-        {% endblock %}
+        {% if user.is_authenticated %}
+            {% block content %} Default content
+            {% endblock %}
+        {% else %}
+            <p>Login <a href="/login">Here</a> </p>
+        {% endif %}
     </div>
 </body>
 
